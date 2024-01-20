@@ -199,6 +199,6 @@ bindsym $mod+Control+j workspace prev
 assign [class="discord"] comms
 assign [class="teams-for-linux"] comms
 exec_always i3-msg "exec discord; exec teams-for-linux"
-
+exec_always --no-startup-id "picom"
 bindsym $mod+Shift+a move container to workspace prev
 bindsym $mod+Shift+d move container to workspace next
