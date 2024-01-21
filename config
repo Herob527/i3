@@ -204,6 +204,12 @@ bar {
             binding_mode       #1f222d #81a1c1    #2e3440
     }
 }
+# class                 border  backgr. text    indicator
+client.focused          #1f222d #1f222d #ffffff #81a1c1
+client.unfocused        #2e3440 #1f222d #888888 #1f222d
+client.focused_inactive #2e3440 #1f222d #888888 #1f222d
+client.placeholder      #2e3440 #1f222d #888888 #1f222d
+client.urgent           #900000 #900000 #ffffff #900000
 workspace_layout stacking
 
 
@@ -214,7 +220,6 @@ bindsym $mod+Control+j workspace prev
 assign [class="discord"] comms
 assign [class="teams-for-linux"] comms
 assign [class="jetbrains-studio"] jetbrains
-exec_always i3-msg "exec discord"
-exec_always --no-startup-id "picom"
+exec i3-msg "exec discord"
 bindsym $mod+Shift+a move container to workspace prev
 bindsym $mod+Shift+d move container to workspace next
