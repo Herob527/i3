@@ -123,6 +123,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 set $comms "comms"
+set $jetbrains "jetbrains"
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -135,6 +136,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 bindsym $mod+c workspace $comms
+bindsym $mod+n workspace $jetbrains
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -147,6 +149,7 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shify+n move container to workspace $jetbrains
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -187,7 +190,19 @@ bindsym $mod+p exec "flameshot gui"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command i3status
+    colors {
+            separator  #1f222d
+            background #1f222d
+            statusline #81a1c1
+
+            #                   border  background text
+            focused_workspace  #1f222d #1f222d    #81a1c1
+            active_workspace   #1f222d #252936    #5e81ac
+            inactive_workspace #1f222d #1f222d    #4c566a
+            urgent_workspace   #1f222d #1f222d    #ee829f
+            binding_mode       #1f222d #81a1c1    #2e3440
+    }
 }
 workspace_layout stacking
 
@@ -198,7 +213,8 @@ bindsym $mod+Control+j workspace prev
 
 assign [class="discord"] comms
 assign [class="teams-for-linux"] comms
-exec_always i3-msg "exec discord; exec teams-for-linux"
+assign [class="jetbrains-studio"] jetbrains
+exec_always i3-msg "exec discord"
 exec_always --no-startup-id "picom"
 bindsym $mod+Shift+a move container to workspace prev
 bindsym $mod+Shift+d move container to workspace next
