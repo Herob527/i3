@@ -23,12 +23,10 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id feh ~/Pictures/wallpapers/skyrim.jpeg --bg-scale
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -53,7 +51,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "rofi -modi drun,run -show drun
+bindsym $mod+d exec "rofi -modi drun,power-menu:rofi-power-menu,run,combi -show drun" 
+exec_always xset dpms force off
+bindsym $mod+Shift+v exec "/home/szymon/.local/bin/rofi-power"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -124,6 +124,7 @@ set $ws9 "9"
 set $ws10 "10"
 set $comms "comms"
 set $jetbrains "jetbrains"
+set $gaming "gaming"
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -137,6 +138,7 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 bindsym $mod+c workspace $comms
 bindsym $mod+n workspace $jetbrains
+bindsym $mod+g workspace $gaming
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -149,7 +151,14 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-bindsym $mod+Shify+n move container to workspace $jetbrains
+bindsym $mod+Shift+n move container to workspace $jetbrains
+bindsym $mod+Shift+g move container to workspace $gaming
+
+
+bindsym $mod+Control+l workspace next
+bindsym $mod+Control+j workspace prev
+bindsym $mod+Shift+a move container to workspace prev
+bindsym $mod+Shift+d move container to workspace next
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -203,7 +212,6 @@ bar {
             background $nord_darkest 
             statusline $nord_darkest
 
-            #                   border  background text
             focused_workspace  #$nord_dark $nord_dark $nord_text
             active_workspace   #1f222d $nord_darker    #5e81ac
             inactive_workspace #1f222d $nord_darkest    #4c566a
@@ -220,13 +228,12 @@ client.urgent           #900000 #900000 #ffffff #900000
 workspace_layout stacking
 
 
-bindsym $mod+Control+l workspace next
+assign [class="discord"] $comms
+assign [class="teams-for-linux"] $comms
+assign [class="jetbrains-studio"] $jetbrains
 
-bindsym $mod+Control+j workspace prev
+assign [class="^Minecraft"] $gaming
+assign [class="Crystal Launcher"] $gaming
 
-assign [class="discord"] comms
-assign [class="teams-for-linux"] comms
-assign [class="jetbrains-studio"] jetbrains
 exec i3-msg "exec discord"
-bindsym $mod+Shift+a move container to workspace prev
-bindsym $mod+Shift+d move container to workspace next
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
