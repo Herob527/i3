@@ -235,4 +235,4 @@ assign [class="^Minecraft"] $gaming
 assign [class="Crystal Launcher"] $gaming
 
 exec i3-msg "exec discord"
-exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 120
+exec xrandr --output HDMI-A-1 --mode 1920x1080 --rate 120
