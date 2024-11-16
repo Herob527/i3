@@ -205,6 +205,7 @@ set $nord_dark "#434c5e"
 set $nord_darker "#3b4252"
 set $nord_darkest "#2e3440"
 bar {
+    font pango:DejaVu Sans Mono, FontAwesome 9
     status_command ~/.cargo/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
     colors {
             separator  $nord_darkest
@@ -236,3 +237,4 @@ assign [class="Crystal Launcher"] $gaming
 
 exec i3-msg "exec discord"
 exec xrandr --output HDMI-A-1 --mode 1920x1080 --rate 120
+exec --no-startup-id nitrogen --restore
