@@ -23,7 +23,6 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
-exec --no-startup-id feh ~/Pictures/wallpapers/skyrim.jpeg --bg-scale
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -204,21 +203,21 @@ set $nord_normal "#4c566a"
 set $nord_dark "#434c5e"
 set $nord_darker "#3b4252"
 set $nord_darkest "#2e3440"
-bar {
-    font pango:DejaVu Sans Mono, FontAwesome 9
-    status_command ~/.cargo/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
-    colors {
-            separator  $nord_darkest
-            background $nord_darkest 
-            statusline $nord_darkest
-
-            focused_workspace  #$nord_dark $nord_dark $nord_text
-            active_workspace   #1f222d $nord_darker    #5e81ac
-            inactive_workspace #1f222d $nord_darkest    #4c566a
-            urgent_workspace   #1f222d #1f222d    #ee829f
-            binding_mode       #1f222d #81a1c1    #2e3440
-    }
-}
+# bar {
+#     font pango:DejaVu Sans Mono, FontAwesome 9
+#     status_command ~/.cargo/bin/i3status-rs $HOME/.config/i3status-rust/config.toml
+#     colors {
+#             separator  $nord_darkest
+#             background $nord_darkest 
+#             statusline $nord_darkest
+#
+#             focused_workspace  #$nord_dark $nord_dark $nord_text
+#             active_workspace   #1f222d $nord_darker    #5e81ac
+#             inactive_workspace #1f222d $nord_darkest    #4c566a
+#             urgent_workspace   #1f222d #1f222d    #ee829f
+#             binding_mode       #1f222d #81a1c1    #2e3440
+#     }
+# }
 # class                 border  backgr. text    indicator
 client.focused          #1f222d $nord_darker #ffffff #81a1c1
 client.unfocused        #2e3440 $nord_darkest $nord_text #1f222d
@@ -238,3 +237,5 @@ assign [class="Crystal Launcher"] $gaming
 exec i3-msg "exec discord"
 exec xrandr --output HDMI-A-1 --mode 1920x1080 --rate 120
 exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+for_window [class="^.*"] border pixel 0
