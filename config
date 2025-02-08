@@ -9,6 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# exec_always xrandr --rate 120
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -236,7 +237,6 @@ assign [class="Crystal Launcher"] $gaming
 assign [class="steam_app_*"] $gaming
 
 exec i3-msg "exec discord"
-exec xrandr --output HDMI-A-1 --mode 1920x1080 --rate 120
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 for_window [class="^.*"] border pixel 0
