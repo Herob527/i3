@@ -230,9 +230,10 @@ workspace_layout stacking
 assign [class="discord"] $comms
 assign [class="teams-for-linux"] $comms
 assign [class="jetbrains-studio"] $jetbrains
-
+assign [class="steam"] $gaming
 assign [class="^Minecraft"] $gaming
 assign [class="Crystal Launcher"] $gaming
+assign [class="steam_app_*"] $gaming
 
 exec i3-msg "exec discord"
 exec xrandr --output HDMI-A-1 --mode 1920x1080 --rate 120
