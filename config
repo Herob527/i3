@@ -24,6 +24,7 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
+exec_always --no-startup-id dunst
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -240,3 +241,4 @@ exec i3-msg "exec discord"
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 for_window [class="^.*"] border pixel 0
+
