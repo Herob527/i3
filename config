@@ -239,5 +239,8 @@ assign [class="steam_app_*"] $gaming
 exec i3-msg "exec discord"
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always xset s off
+exec_always xset s noblank
+exec_always xset -dpms
 for_window [class="^.*"] border pixel 0
 
